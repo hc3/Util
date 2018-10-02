@@ -30,11 +30,11 @@ import com.amazonaws.services.s3.model.S3Object;
 @Service
 public class AmazonS3Service {
 
-    private static final String clientRegion = "";
-    private static final String bucketName = "";
+	private static final String clientRegion = "";
+	private static final String bucketName = "";
 	private static final String accessKeyId = "";
 	private static final String secretKey = "";
-    private static final String regexMatch = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}.jpg";
+	private static final String regexMatch = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}.jpg";
     
     public static String generatedUrl(String imageName, String bucketFolder) {
     	String returnedUrl = null;
@@ -67,7 +67,7 @@ public class AmazonS3Service {
         return returnedUrl;
     }
     
-	public static String uploadS3Image(String image, String imageName, String bucketFolder) throws IOException {
+	public static String uploadS3Image(String image, String bucketFolder) throws IOException {
 		
 		String imageUrl = null;
 		String keyName = null;
@@ -76,8 +76,8 @@ public class AmazonS3Service {
 		
 		try {
 			
-			if(imageName.matches(regexMatch)) {
-				keyName = imageName;
+			if(image.matches(regexMatch)) {
+				keyName = image;
 			} else {				
 				keyName = UUID.randomUUID().toString()+".jpg";
 			}
